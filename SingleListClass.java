@@ -78,6 +78,73 @@ public class SingleListClass {
         head = head.getNext();
         return remove;
     }
+    
+    public Integer avantdernier() {
+        if (head == null || head.getNext() == null) {
+            return null;
+        }
+        Node curr = head;
+        while (curr.getNext().getNext() != null) {
+            curr = curr.getNext();
+        }
+        return curr.getElement();
+    }
+    
+    public void reverse() {
+        Node prev = null;
+        Node curr = head;
+        Node next = null;
+
+        while (curr != null) {
+            next = curr.getNext(); 
+            curr.setNext(prev);    
+            prev = curr;           
+            curr = next;      
+        head = prev; }
+    }
+    
+    
+    public void swapNodes(Node x, Node y) {
+        if (x == y || x == null || y == null || head == null) {
+            return;
+        }
+
+   
+        Node prevX = null, currX = head;
+        while (currX != null && currX != x) {
+            prevX = currX;
+            currX = currX.getNext();
+        }
+
+        Node prevY = null, currY = head;
+        while (currY != null && currY != y) {
+            prevY = currY;
+            currY = currY.getNext();
+        }
+
+   
+        if (currX == null || currY == null) {
+            return;
+        }
+
+        if (prevX != null) {
+            prevX.setNext(y);
+        } else {
+            head = y;
+        }
+
+      
+        if (prevY != null) {
+            prevY.setNext(x);
+        } else {
+            head = x;
+        }
+
+   
+        Node tempNext = x.getNext();
+        x.setNext(y.getNext());
+        y.setNext(tempNext);
+    }
 
     
     
